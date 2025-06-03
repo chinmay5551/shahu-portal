@@ -1,182 +1,134 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IPLT20 Fixtures Clone</title>
+  <title>IPL T20 Fixtures Clone</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f9fafb;
-    }
-    /* Scrollbar for match list */
-    .match-list::-webkit-scrollbar {
-      height: 6px;
-    }
-    .match-list::-webkit-scrollbar-thumb {
-      background: #ef4444;
-      border-radius: 3px;
-    }
-  </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="bg-gray-100 min-h-screen flex flex-col">
 
-  <header class="bg-red-700 text-white p-4 shadow-md">
-    <div class="max-w-5xl mx-auto flex items-center justify-between">
-      <h1 class="text-2xl font-bold">IPLT20 Fixtures</h1>
-      <nav class="space-x-4">
-        <button onclick="filterMatches('all')" id="tab-all" class="tab-btn underline decoration-white decoration-2 font-semibold">All</button>
-        <button onclick="filterMatches('upcoming')" id="tab-upcoming" class="tab-btn hover:underline">Upcoming</button>
-        <button onclick="filterMatches('completed')" id="tab-completed" class="tab-btn hover:underline">Completed</button>
-      </nav>
-    </div>
+  <header class="bg-yellow-400 shadow p-4 flex justify-center items-center">
+    <h1 class="text-3xl font-bold text-gray-900">IPL T20 Fixtures</h1>
   </header>
 
   <main class="flex-grow max-w-5xl mx-auto p-4">
-
-    <section class="match-list space-y-4 overflow-auto max-h-[75vh]">
-      <!-- Matches will be rendered here -->
-    </section>
-
+    <div id="fixtures" class="space-y-6"></div>
   </main>
 
-  <footer class="bg-red-700 text-white p-4 text-center">
-    &copy; 2025 IPLT20 Clone — Demo by ChatGPT
+  <footer class="bg-yellow-400 text-gray-900 text-center p-3 mt-auto">
+    &copy; 2025 IPL T20 Clone. All rights reserved.
   </footer>
 
   <script>
-    // IPL Teams with official logos (from Wikipedia)
     const teams = {
-      'CSK': { name: 'Chennai Super Kings', logo: 'https://upload.wikimedia.org/wikipedia/en/6/6e/Chennai_Super_Kings_Logo.svg' },
-      'MI': { name: 'Mumbai Indians', logo: 'https://upload.wikimedia.org/wikipedia/en/5/56/Mumbai_Indians_Logo.svg' },
-      'RCB': { name: 'Royal Challengers Bangalore', logo: 'https://upload.wikimedia.org/wikipedia/en/4/43/Royal_Challengers_Bangalore_Logo.svg' },
-      'KKR': { name: 'Kolkata Knight Riders', logo: 'https://upload.wikimedia.org/wikipedia/en/0/0a/Kolkata_Knight_Riders_Logo.svg' },
-      'SRH': { name: 'Sunrisers Hyderabad', logo: 'https://upload.wikimedia.org/wikipedia/en/4/43/Sunrisers_Hyderabad_Logo.svg' },
-      'DC': { name: 'Delhi Capitals', logo: 'https://upload.wikimedia.org/wikipedia/en/1/10/Delhi_Capitals_Logo.svg' },
-      'RR': { name: 'Rajasthan Royals', logo: 'https://upload.wikimedia.org/wikipedia/en/6/61/Rajasthan_Royals_Logo.svg' },
-      'PBKS': { name: 'Punjab Kings', logo: 'https://upload.wikimedia.org/wikipedia/en/f/fc/Punjab_Kings_Logo.svg' },
+      'CSK': { name: 'Chennai Super Kings', logo: 'https://assets.iplt20.com/ipl/IPL_LOGO_CSK.png' },
+      'MI': { name: 'Mumbai Indians', logo: 'https://assets.iplt20.com/ipl/IPL_LOGO_MI.png' },
+      'RCB': { name: 'Royal Challengers Bangalore', logo: 'https://assets.iplt20.com/ipl/IPL_LOGO_RCB.png' },
+      'KKR': { name: 'Kolkata Knight Riders', logo: 'https://assets.iplt20.com/ipl/IPL_LOGO_KKR.png' },
+      'SRH': { name: 'Sunrisers Hyderabad', logo: 'https://assets.iplt20.com/ipl/IPL_LOGO_SRH.png' },
+      'DC': { name: 'Delhi Capitals', logo: 'https://assets.iplt20.com/ipl/IPL_LOGO_DC.png' },
+      'RR': { name: 'Rajasthan Royals', logo: 'https://assets.iplt20.com/ipl/IPL_LOGO_RR.png' },
+      'PBKS': { name: 'Punjab Kings', logo: 'https://assets.iplt20.com/ipl/IPL_LOGO_PBKS.png' },
     };
 
-    // Sample matches data
-    const matches = [
+    // Sample fixture data (replace with real API data or your own JSON)
+    const fixtures = [
       {
         matchNo: 1,
-        team1: 'CSK',
-        team2: 'MI',
         date: '2025-04-01',
         time: '19:30',
-        venue: 'M. A. Chidambaram Stadium, Chennai',
-        status: 'upcoming'
+        venue: 'Wankhede Stadium, Mumbai',
+        team1: 'MI',
+        team2: 'CSK',
+        status: 'Upcoming'
       },
       {
         matchNo: 2,
-        team1: 'RCB',
-        team2: 'KKR',
         date: '2025-04-02',
         time: '19:30',
-        venue: 'M. Chinnaswamy Stadium, Bangalore',
-        status: 'upcoming'
+        venue: 'M. Chinnaswamy Stadium, Bengaluru',
+        team1: 'RCB',
+        team2: 'KKR',
+        status: 'Upcoming'
       },
       {
         matchNo: 3,
-        team1: 'SRH',
-        team2: 'DC',
         date: '2025-04-03',
         time: '19:30',
         venue: 'Rajiv Gandhi Intl. Cricket Stadium, Hyderabad',
-        status: 'completed',
-        result: 'DC won by 6 wickets'
+        team1: 'SRH',
+        team2: 'DC',
+        status: 'Upcoming'
       },
       {
         matchNo: 4,
-        team1: 'RR',
-        team2: 'PBKS',
         date: '2025-04-04',
         time: '19:30',
         venue: 'Sawai Mansingh Stadium, Jaipur',
-        status: 'completed',
-        result: 'RR won by 4 runs'
-      },
-      {
-        matchNo: 5,
-        team1: 'MI',
-        team2: 'RCB',
-        date: '2025-04-05',
-        time: '19:30',
-        venue: 'Wankhede Stadium, Mumbai',
-        status: 'upcoming'
-      },
-      {
-        matchNo: 6,
-        team1: 'KKR',
-        team2: 'CSK',
-        date: '2025-04-06',
-        time: '19:30',
-        venue: 'Eden Gardens, Kolkata',
-        status: 'upcoming'
+        team1: 'RR',
+        team2: 'PBKS',
+        status: 'Upcoming'
       }
     ];
 
-    const matchListEl = document.querySelector('.match-list');
-    const tabs = document.querySelectorAll('.tab-btn');
+    const fixturesContainer = document.getElementById('fixtures');
 
-    function renderMatches(filter = 'all') {
-      matchListEl.innerHTML = '';
+    function createFixtureCard(fixture) {
+      const card = document.createElement('div');
+      card.className = 'bg-white rounded-lg shadow p-4 flex flex-col md:flex-row md:items-center md:justify-between';
 
-      let filtered = matches;
-      if (filter !== 'all') {
-        filtered = matches.filter(m => m.status === filter);
-      }
+      // Match info
+      const info = document.createElement('div');
+      info.className = 'mb-4 md:mb-0';
 
-      if (filtered.length === 0) {
-        matchListEl.innerHTML = `<p class="text-center text-gray-500">No matches found.</p>`;
-        return;
-      }
+      info.innerHTML = `
+        <div class="text-sm text-gray-600">Match #${fixture.matchNo}</div>
+        <div class="font-semibold text-lg">${new Date(fixture.date).toDateString()}</div>
+        <div class="text-gray-700">${fixture.time} IST</div>
+        <div class="text-gray-500">${fixture.venue}</div>
+        <div class="mt-2 font-semibold ${fixture.status === 'Upcoming' ? 'text-green-600' : 'text-red-600'}">${fixture.status}</div>
+      `;
 
-      filtered.forEach(match => {
-        const team1 = teams[match.team1];
-        const team2 = teams[match.team2];
+      // Teams
+      const teamsDiv = document.createElement('div');
+      teamsDiv.className = 'flex items-center space-x-6 justify-center';
 
-        const matchEl = document.createElement('article');
-        matchEl.className = "bg-white rounded-lg shadow-md p-4 flex flex-col md:flex-row md:items-center md:justify-between";
+      // Team 1
+      const team1Div = document.createElement('div');
+      team1Div.className = 'flex flex-col items-center space-y-1';
+      team1Div.innerHTML = `
+        <img src="${teams[fixture.team1].logo}" alt="${teams[fixture.team1].name}" class="h-16 w-16 object-contain" />
+        <span class="font-semibold">${teams[fixture.team1].name}</span>
+      `;
 
-        matchEl.innerHTML = `
-          <div class="flex items-center space-x-4 mb-3 md:mb-0">
-            <div class="text-sm text-gray-500 font-semibold">Match ${match.matchNo}</div>
-            <div class="flex items-center space-x-2">
-              <img src="${team1.logo}" alt="${team1.name}" class="w-10 h-10 object-contain" />
-              <span class="font-semibold">${team1.name}</span>
-            </div>
-            <span class="text-red-600 font-bold text-xl">vs</span>
-            <div class="flex items-center space-x-2">
-              <img src="${team2.logo}" alt="${team2.name}" class="w-10 h-10 object-contain" />
-              <span class="font-semibold">${team2.name}</span>
-            </div>
-          </div>
+      // VS text
+      const vsDiv = document.createElement('div');
+      vsDiv.className = 'text-xl font-bold text-gray-600';
+      vsDiv.textContent = 'VS';
 
-          <div class="text-gray-700 text-sm md:text-right space-y-1">
-            <div><strong>Date:</strong> ${new Date(match.date).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })}</div>
-            <div><strong>Time:</strong> ${match.time} IST</div>
-            <div><strong>Venue:</strong> ${match.venue}</div>
-            ${match.status === 'completed' ? `<div class="text-green-600 font-semibold mt-1">Result: ${match.result}</div>` : ''}
-          </div>
-        `;
+      // Team 2
+      const team2Div = document.createElement('div');
+      team2Div.className = 'flex flex-col items-center space-y-1';
+      team2Div.innerHTML = `
+        <img src="${teams[fixture.team2].logo}" alt="${teams[fixture.team2].name}" class="h-16 w-16 object-contain" />
+        <span class="font-semibold">${teams[fixture.team2].name}</span>
+      `;
 
-        matchListEl.appendChild(matchEl);
-      });
+      teamsDiv.appendChild(team1Div);
+      teamsDiv.appendChild(vsDiv);
+      teamsDiv.appendChild(team2Div);
+
+      card.appendChild(info);
+      card.appendChild(teamsDiv);
+
+      return card;
     }
 
-    function filterMatches(filter) {
-      renderMatches(filter);
-      tabs.forEach(tab => {
-        tab.classList.remove('underline', 'decoration-white', 'decoration-2', 'font-semibold');
-      });
-      document.getElementById(`tab-${filter}`).classList.add('underline', 'decoration-white', 'decoration-2', 'font-semibold');
-    }
-
-    // Initial render
-    filterMatches('all');
+    fixtures.forEach(fixture => {
+      fixturesContainer.appendChild(createFixtureCard(fixture));
+    });
   </script>
+
 </body>
 </html>
