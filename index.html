@@ -2,497 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shahu Shikshan Sanstha</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MVDH College Shahad</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: "Inter", sans-serif;
-    }
+    body { font-family: 'Inter', sans-serif; }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-white text-gray-800">
+
   <!-- Navbar -->
-  <header class="bg-red-700 text-white shadow">
-    <div
-      class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center"
-    >
-      <h1 class="text-xl font-bold">Shahu Shikshan Sanstha</h1>
-      <nav class="space-x-4">
-        <button onclick="showSection('home')" class="hover:underline">Home</button>
-        <button onclick="showSection('about')" class="hover:underline">About</button>
-        <button onclick="showSection('notice')" class="hover:underline">
-          Notice Board
-        </button>
-        <button onclick="showSection('events')" class="hover:underline">
-          Events
-        </button>
-        <button onclick="showSection('gallery')" class="hover:underline">
-          Gallery
-        </button>
-        <button onclick="showSection('contact')" class="hover:underline">
-          Contact
-        </button>
-        <button onclick="showSection('portal')" class="hover:underline">
-          Student Portal
-        </button>
+  <header class="bg-[#023047] text-white sticky top-0 z-50 shadow">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <img src="logo.png" alt="Logo" class="h-12 w-auto" />
+        <span class="text-lg font-semibold">MVDH College Shahad</span>
+      </div>
+      <nav class="space-x-6 text-sm">
+        <a href="#home" class="hover:underline">Home</a>
+        <a href="#about" class="hover:underline">About</a>
+        <a href="#courses" class="hover:underline">Courses</a>
+        <a href="#contact" class="hover:underline">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- Sections -->
-  <main class="max-w-4xl mx-auto p-6 space-y-8">
-    <section id="home">
-      <h2 class="text-2xl font-semibold mb-2">Welcome to Shahu Shikshan Sanstha</h2>
-      <p>Your gateway to quality education and student empowerment.</p>
-    </section>
+  <!-- Hero Section -->
+  <section id="home" class="relative bg-[url('hero.jpg')] bg-cover bg-center h-[70vh] flex items-center justify-center text-white">
+    <div class="bg-black bg-opacity-50 p-6 rounded shadow-md text-center">
+      <h1 class="text-3xl md:text-5xl font-bold mb-4">Welcome to MVDH College Shahad</h1>
+      <p class="text-lg">Empowering education through dedication and excellence.</p>
+    </div>
+  </section>
 
-    <section id="about" class="hidden">
-      <h2 class="text-2xl font-semibold mb-2">About Us</h2>
-      <p>
-        Founded with the mission to educate and uplift, our institution fosters
-        excellence in learning and character.
+  <!-- About Section -->
+  <section id="about" class="py-16 px-4 md:px-12 bg-gray-100">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-4">About Us</h2>
+      <p class="text-lg leading-relaxed">
+        The college aims at promoting the values of excellence and knowledge through a dedicated teaching staff and a holistic curriculum.
+        With years of academic service, we remain committed to uplifting our students personally and professionally.
       </p>
-    </section>
+    </div>
+  </section>
 
-    <section id="notice" class="hidden">
-      <h2 class="text-2xl font-semibold mb-2">Notice Board</h2>
-      <div id="noticeBoard" class="space-y-3 border p-4 rounded bg-white shadow"></div>
-    </section>
-
-    <section id="events" class="hidden">
-      <h2 class="text-2xl font-semibold mb-2">Upcoming Events</h2>
-      <ul id="eventList" class="list-disc list-inside bg-white p-4 rounded shadow"></ul>
-    </section>
-
-    <section id="gallery" class="hidden">
-      <h2 class="text-2xl font-semibold mb-2">Photo Gallery</h2>
-      <div
-        id="galleryGrid"
-        class="grid grid-cols-2 md:grid-cols-3 gap-4 cursor-pointer rounded"
-      ></div>
-    </section>
-
-    <section id="contact" class="hidden">
-      <h2 class="text-2xl font-semibold mb-2">Contact Us</h2>
-      <form
-        onsubmit="event.preventDefault(); alert('Thanks for contacting us!');"
-        class="space-y-4"
-      >
-        <input
-          required
-          placeholder="Your Name"
-          class="w-full p-2 border rounded"
-        />
-        <input
-          required
-          type="email"
-          placeholder="Your Email"
-          class="w-full p-2 border rounded"
-        />
-        <textarea
-          required
-          placeholder="Your Message"
-          class="w-full p-2 border rounded"
-        ></textarea>
-        <button
-          type="submit"
-          class="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-800"
-        >
-          Submit
-        </button>
-      </form>
-    </section>
-
-    <section id="portal" class="hidden">
-      <div id="loginBox" class="space-y-4">
-        <h2 class="text-xl font-semibold">Login to Student Portal</h2>
-        <input
-          id="username"
-          placeholder="Username"
-          class="w-full p-2 border rounded"
-        />
-        <input
-          id="password"
-          type="password"
-          placeholder="Password"
-          class="w-full p-2 border rounded"
-        />
-        <button
-          onclick="login()"
-          class="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-800"
-        >
-          Login
-        </button>
-      </div>
-
-      <div id="studentBox" class="hidden">
-        <h2 class="text-xl font-semibold mb-2">Student Report</h2>
-        <div id="studentDetails" class="mb-4"></div>
-        <table class="w-full text-left border">
-          <thead>
-            <tr class="bg-red-100">
-              <th class="p-2">Subject</th>
-              <th class="p-2">Marks</th>
-              <th class="p-2">Grade</th>
-            </tr>
-          </thead>
-          <tbody id="subjectTable"></tbody>
-        </table>
-        <button
-          onclick="logout()"
-          class="mt-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
-        >
-          Logout
-        </button>
-      </div>
-
-      <div id="adminBox" class="hidden">
-        <h2 class="text-xl font-semibold mb-4">Admin Dashboard</h2>
-        <div id="adminContent" class="space-y-6">
-          <section>
-            <h3 class="text-lg font-semibold mb-2">Add New Notice</h3>
-            <form id="noticeForm" class="space-y-2">
-              <input
-                type="date"
-                id="noticeDate"
-                required
-                class="border p-2 rounded w-full"
-              />
-              <input
-                type="text"
-                id="noticeText"
-                placeholder="Notice text"
-                required
-                class="border p-2 rounded w-full"
-              />
-              <button
-                type="submit"
-                class="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-800"
-              >
-                Add Notice
-              </button>
-            </form>
-          </section>
-
-          <section>
-            <h3 class="text-lg font-semibold mb-2">Add New Event</h3>
-            <form id="eventForm" class="space-y-2">
-              <input
-                type="date"
-                id="eventDate"
-                required
-                class="border p-2 rounded w-full"
-              />
-              <input
-                type="text"
-                id="eventText"
-                placeholder="Event description"
-                required
-                class="border p-2 rounded w-full"
-              />
-              <button
-                type="submit"
-                class="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-800"
-              >
-                Add Event
-              </button>
-            </form>
-          </section>
-
-          <section>
-            <h3 class="text-lg font-semibold mb-2">Add Gallery Image</h3>
-            <form id="galleryForm" class="space-y-2">
-              <input
-                type="url"
-                id="galleryUrl"
-                placeholder="Image URL"
-                required
-                class="border p-2 rounded w-full"
-              />
-              <button
-                type="submit"
-                class="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-800"
-              >
-                Add Image
-              </button>
-            </form>
-          </section>
+  <!-- Courses Section -->
+  <section id="courses" class="py-16 px-4 md:px-12">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-semibold text-center mb-10">Courses Offered</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white shadow rounded-lg p-6 text-center">
+          <h3 class="text-xl font-semibold mb-2">B.A.</h3>
+          <p>Specializations in History, Politics, Marathi, and English Literature.</p>
         </div>
-        <button
-          onclick="logout()"
-          class="mt-4 bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
-        >
-          Logout
-        </button>
+        <div class="bg-white shadow rounded-lg p-6 text-center">
+          <h3 class="text-xl font-semibold mb-2">B.Com.</h3>
+          <p>Commerce and Accounting courses for professional development.</p>
+        </div>
+        <div class="bg-white shadow rounded-lg p-6 text-center">
+          <h3 class="text-xl font-semibold mb-2">B.Sc.</h3>
+          <p>Computer Science and IT programs with industry-driven curriculum.</p>
+        </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <!-- Modal for gallery image -->
-  <div
-    id="modal"
-    class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50"
-    onclick="closeModal()"
-  >
-    <img
-      id="modalImage"
-      src=""
-      alt="Enlarged"
-      class="max-w-4xl max-h-[90vh] rounded shadow-lg"
-      onclick="event.stopPropagation()"
-    />
-  </div>
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 px-4 md:px-12 bg-gray-100">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-4">Contact Us</h2>
+      <form onsubmit="event.preventDefault(); alert('Message submitted!');" class="grid gap-4 mt-6">
+        <input type="text" placeholder="Your Name" required class="p-3 border rounded" />
+        <input type="email" placeholder="Your Email" required class="p-3 border rounded" />
+        <textarea placeholder="Your Message" rows="5" required class="p-3 border rounded"></textarea>
+        <button type="submit" class="bg-[#023047] text-white px-6 py-2 rounded hover:bg-[#012534]">Submit</button>
+      </form>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer class="bg-red-700 text-white text-center py-4">
-    &copy; 2025 Shahu Shikshan Sanstha. All rights reserved.
+  <footer class="bg-[#023047] text-white py-6 text-center">
+    <p>&copy; 2025 MVDH College Shahad. All Rights Reserved.</p>
   </footer>
 
-  <script>
-    const loginBox = document.getElementById("loginBox");
-    const studentBox = document.getElementById("studentBox");
-    const adminBox = document.getElementById("adminBox");
-
-    const students = {
-      student1: {
-        name: "Rahul Patil",
-        enrollment: "S001",
-        course: "BSc CS",
-        year: "2nd",
-        subjects: [
-          { name: "Maths", marks: 82 },
-          { name: "Computer", marks: 92 },
-          { name: "English", marks: 76 },
-        ],
-      },
-      student2: {
-        name: "Sneha Deshmukh",
-        enrollment: "S002",
-        course: "BA",
-        year: "1st",
-        subjects: [
-          { name: "History", marks: 88 },
-          { name: "English", marks: 78 },
-          { name: "Politics", marks: 69 },
-        ],
-      },
-    };
-
-    // Initial data for notices, events, gallery
-    let notices = [
-      { date: "2025-06-01", text: "Summer break starts from June 5th." },
-      { date: "2025-06-05", text: "Workshop on Web Development" },
-      { date: "2025-06-12", text: "Parent-Teacher Meeting" },
-      { date: "2025-06-18", text: "Cultural Festival" },
-      { date: "2025-06-25", text: "End Semester Exams Begin" },
-    ];
-
-    let events = [
-      { date: "2025-06-01", event: "Summer break starts from June 5th." },
-      { date: "2025-06-05", event: "Workshop on Web Development" },
-      { date: "2025-06-12", event: "Parent-Teacher Meeting" },
-      { date: "2025-06-18", event: "Cultural Festival" },
-      { date: "2025-06-25", event: "End Semester Exams Begin" },
-    ];
-
-    let galleryImages = [
-      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1468071174046-657d9d351a40?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
-    ];
-
-    function showSection(section) {
-      [
-        "home",
-        "about",
-        "notice",
-        "events",
-        "gallery",
-        "contact",
-        "portal",
-      ].forEach((id) => {
-        document.getElementById(id).classList.add("hidden");
-      });
-      document.getElementById(section).classList.remove("hidden");
-
-      if (section === "notice") loadNotices();
-      if (section === "events") loadEvents();
-      if (section === "gallery") loadGallery();
-    }
-
-    // Load Notices
-    function loadNotices() {
-      const container = document.getElementById("noticeBoard");
-      container.innerHTML = "";
-      notices.forEach(({ date, text }) => {
-        const div = document.createElement("div");
-        div.className =
-          "border-b py-2 last:border-b-0 text-gray-900 font-medium";
-        div.innerHTML = `<span class="font-semibold">${date}:</span> ${text}`;
-        container.appendChild(div);
-      });
-    }
-
-    // Load Events
-    function loadEvents() {
-      const ul = document.getElementById("eventList");
-      ul.innerHTML = "";
-      events.forEach(({ date, event }) => {
-        const li = document.createElement("li");
-        li.textContent = `${date} - ${event}`;
-        ul.appendChild(li);
-      });
-    }
-
-    // Load Gallery
-    function loadGallery() {
-      const galleryGrid = document.getElementById("galleryGrid");
-      galleryGrid.innerHTML = "";
-      galleryImages.forEach((url) => {
-        const img = document.createElement("img");
-        img.src = url;
-        img.alt = "Gallery image";
-        img.className =
-          "rounded shadow-md cursor-pointer hover:opacity-80 max-h-40 object-cover";
-        img.addEventListener("click", () => openModal(url));
-        galleryGrid.appendChild(img);
-      });
-    }
-
-    // Modal functions
-    const modal = document.getElementById("modal");
-    const modalImage = document.getElementById("modalImage");
-
-    function openModal(src) {
-      modalImage.src = src;
-      modal.classList.remove("hidden");
-    }
-    function closeModal() {
-      modal.classList.add("hidden");
-      modalImage.src = "";
-    }
-
-    // Grades calculation
-    function getGrade(marks) {
-      if (marks >= 90) return "A+";
-      if (marks >= 80) return "A";
-      if (marks >= 70) return "B+";
-      if (marks >= 60) return "B";
-      if (marks >= 50) return "C";
-      if (marks >= 40) return "D";
-      return "F";
-    }
-
-    // Login function
-    function login() {
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value.trim();
-
-      // Simple admin check
-      if (username === "admin" && password === "admin123") {
-        loginBox.classList.add("hidden");
-        adminBox.classList.remove("hidden");
-        studentBox.classList.add("hidden");
-        alert("Logged in as Admin");
-        return;
-      }
-
-      if (students[username]) {
-        loginBox.classList.add("hidden");
-        studentBox.classList.remove("hidden");
-        adminBox.classList.add("hidden");
-
-        const student = students[username];
-        document.getElementById("studentDetails").innerHTML = `
-          <p><strong>Name:</strong> ${student.name}</p>
-          <p><strong>Enrollment:</strong> ${student.enrollment}</p>
-          <p><strong>Course:</strong> ${student.course}</p>
-          <p><strong>Year:</strong> ${student.year}</p>
-        `;
-        const tbody = document.getElementById("subjectTable");
-        tbody.innerHTML = "";
-        student.subjects.forEach(({ name, marks }) => {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td class="border px-2 py-1">${name}</td>
-            <td class="border px-2 py-1">${marks}</td>
-            <td class="border px-2 py-1">${getGrade(marks)}</td>
-          `;
-          tbody.appendChild(tr);
-        });
-        alert(`Logged in as ${student.name}`);
-        return;
-      }
-
-      alert("Invalid username or password");
-    }
-
-    // Logout function
-    function logout() {
-      loginBox.classList.remove("hidden");
-      studentBox.classList.add("hidden");
-      adminBox.classList.add("hidden");
-      document.getElementById("username").value = "";
-      document.getElementById("password").value = "";
-    }
-
-    // Admin forms submit handlers
-    document.addEventListener("DOMContentLoaded", () => {
-      // Notice form
-      document.getElementById("noticeForm").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const date = document.getElementById("noticeDate").value;
-        const text = document.getElementById("noticeText").value.trim();
-        if (date && text) {
-          notices.unshift({ date, text }); // Add new notice to the beginning
-          alert("Notice added!");
-          e.target.reset();
-          if (!document.getElementById("notice").classList.contains("hidden")) {
-            loadNotices();
-          }
-        }
-      });
-
-      // Event form
-      document.getElementById("eventForm").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const date = document.getElementById("eventDate").value;
-        const text = document.getElementById("eventText").value.trim();
-        if (date && text) {
-          events.unshift({ date, event: text });
-          alert("Event added!");
-          e.target.reset();
-          if (!document.getElementById("events").classList.contains("hidden")) {
-            loadEvents();
-          }
-        }
-      });
-
-      // Gallery form
-      document.getElementById("galleryForm").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const url = document.getElementById("galleryUrl").value.trim();
-        if (url) {
-          galleryImages.unshift(url);
-          alert("Gallery image added!");
-          e.target.reset();
-          if (!document.getElementById("gallery").classList.contains("hidden")) {
-            loadGallery();
-          }
-        }
-      });
-    });
-
-    // Show home section on page load
-    showSection("home");
-  </script>
 </body>
 </html>
