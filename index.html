@@ -1,90 +1,182 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MVDH College Shahad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IPLT20 Fixtures Clone</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+    }
+    /* Scrollbar for match list */
+    .match-list::-webkit-scrollbar {
+      height: 6px;
+    }
+    .match-list::-webkit-scrollbar-thumb {
+      background: #ef4444;
+      border-radius: 3px;
+    }
   </style>
 </head>
-<body class="bg-white text-gray-800">
+<body class="min-h-screen flex flex-col">
 
-  <!-- Navbar -->
-  <header class="bg-[#023047] text-white sticky top-0 z-50 shadow">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <div class="flex items-center space-x-3">
-        <img src="logo.png" alt="Logo" class="h-12 w-auto" />
-        <span class="text-lg font-semibold">MVDH College Shahad</span>
-      </div>
-      <nav class="space-x-6 text-sm">
-        <a href="#home" class="hover:underline">Home</a>
-        <a href="#about" class="hover:underline">About</a>
-        <a href="#courses" class="hover:underline">Courses</a>
-        <a href="#contact" class="hover:underline">Contact</a>
+  <header class="bg-red-700 text-white p-4 shadow-md">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <h1 class="text-2xl font-bold">IPLT20 Fixtures</h1>
+      <nav class="space-x-4">
+        <button onclick="filterMatches('all')" id="tab-all" class="tab-btn underline decoration-white decoration-2 font-semibold">All</button>
+        <button onclick="filterMatches('upcoming')" id="tab-upcoming" class="tab-btn hover:underline">Upcoming</button>
+        <button onclick="filterMatches('completed')" id="tab-completed" class="tab-btn hover:underline">Completed</button>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section id="home" class="relative bg-[url('hero.jpg')] bg-cover bg-center h-[70vh] flex items-center justify-center text-white">
-    <div class="bg-black bg-opacity-50 p-6 rounded shadow-md text-center">
-      <h1 class="text-3xl md:text-5xl font-bold mb-4">Welcome to MVDH College Shahad</h1>
-      <p class="text-lg">Empowering education through dedication and excellence.</p>
-    </div>
-  </section>
+  <main class="flex-grow max-w-5xl mx-auto p-4">
 
-  <!-- About Section -->
-  <section id="about" class="py-16 px-4 md:px-12 bg-gray-100">
-    <div class="max-w-5xl mx-auto text-center">
-      <h2 class="text-3xl font-semibold mb-4">About Us</h2>
-      <p class="text-lg leading-relaxed">
-        The college aims at promoting the values of excellence and knowledge through a dedicated teaching staff and a holistic curriculum.
-        With years of academic service, we remain committed to uplifting our students personally and professionally.
-      </p>
-    </div>
-  </section>
+    <section class="match-list space-y-4 overflow-auto max-h-[75vh]">
+      <!-- Matches will be rendered here -->
+    </section>
 
-  <!-- Courses Section -->
-  <section id="courses" class="py-16 px-4 md:px-12">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-semibold text-center mb-10">Courses Offered</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white shadow rounded-lg p-6 text-center">
-          <h3 class="text-xl font-semibold mb-2">B.A.</h3>
-          <p>Specializations in History, Politics, Marathi, and English Literature.</p>
-        </div>
-        <div class="bg-white shadow rounded-lg p-6 text-center">
-          <h3 class="text-xl font-semibold mb-2">B.Com.</h3>
-          <p>Commerce and Accounting courses for professional development.</p>
-        </div>
-        <div class="bg-white shadow rounded-lg p-6 text-center">
-          <h3 class="text-xl font-semibold mb-2">B.Sc.</h3>
-          <p>Computer Science and IT programs with industry-driven curriculum.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  </main>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-16 px-4 md:px-12 bg-gray-100">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl font-semibold mb-4">Contact Us</h2>
-      <form onsubmit="event.preventDefault(); alert('Message submitted!');" class="grid gap-4 mt-6">
-        <input type="text" placeholder="Your Name" required class="p-3 border rounded" />
-        <input type="email" placeholder="Your Email" required class="p-3 border rounded" />
-        <textarea placeholder="Your Message" rows="5" required class="p-3 border rounded"></textarea>
-        <button type="submit" class="bg-[#023047] text-white px-6 py-2 rounded hover:bg-[#012534]">Submit</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-[#023047] text-white py-6 text-center">
-    <p>&copy; 2025 MVDH College Shahad. All Rights Reserved.</p>
+  <footer class="bg-red-700 text-white p-4 text-center">
+    &copy; 2025 IPLT20 Clone — Demo by ChatGPT
   </footer>
 
+  <script>
+    // Sample IPL Teams with placeholder logos (replace with real images if needed)
+    const teams = {
+      'CSK': { name: 'Chennai Super Kings', logo: 'https://upload.wikimedia.org/wikipedia/en/6/6e/Chennai_Super_Kings_Logo.svg' },
+      'MI': { name: 'Mumbai Indians', logo: 'https://upload.wikimedia.org/wikipedia/en/5/56/Mumbai_Indians_Logo.svg' },
+      'RCB': { name: 'Royal Challengers Bangalore', logo: 'https://upload.wikimedia.org/wikipedia/en/4/43/Royal_Challengers_Bangalore_Logo.svg' },
+      'KKR': { name: 'Kolkata Knight Riders', logo: 'https://upload.wikimedia.org/wikipedia/en/0/0a/Kolkata_Knight_Riders_Logo.svg' },
+      'SRH': { name: 'Sunrisers Hyderabad', logo: 'https://upload.wikimedia.org/wikipedia/en/4/43/Sunrisers_Hyderabad_Logo.svg' },
+      'DC': { name: 'Delhi Capitals', logo: 'https://upload.wikimedia.org/wikipedia/en/1/10/Delhi_Capitals_Logo.svg' },
+      'RR': { name: 'Rajasthan Royals', logo: 'https://upload.wikimedia.org/wikipedia/en/6/61/Rajasthan_Royals_Logo.svg' },
+      'PBKS': { name: 'Punjab Kings', logo: 'https://upload.wikimedia.org/wikipedia/en/f/fc/Punjab_Kings_Logo.svg' },
+    };
+
+    // Sample matches data
+    const matches = [
+      {
+        matchNo: 1,
+        team1: 'CSK',
+        team2: 'MI',
+        date: '2025-04-01',
+        time: '19:30',
+        venue: 'M. A. Chidambaram Stadium, Chennai',
+        status: 'upcoming'
+      },
+      {
+        matchNo: 2,
+        team1: 'RCB',
+        team2: 'KKR',
+        date: '2025-04-02',
+        time: '19:30',
+        venue: 'M. Chinnaswamy Stadium, Bangalore',
+        status: 'upcoming'
+      },
+      {
+        matchNo: 3,
+        team1: 'SRH',
+        team2: 'DC',
+        date: '2025-04-03',
+        time: '19:30',
+        venue: 'Rajiv Gandhi Intl. Cricket Stadium, Hyderabad',
+        status: 'completed',
+        result: 'DC won by 6 wickets'
+      },
+      {
+        matchNo: 4,
+        team1: 'RR',
+        team2: 'PBKS',
+        date: '2025-04-04',
+        time: '19:30',
+        venue: 'Sawai Mansingh Stadium, Jaipur',
+        status: 'completed',
+        result: 'RR won by 4 runs'
+      },
+      {
+        matchNo: 5,
+        team1: 'MI',
+        team2: 'RCB',
+        date: '2025-04-05',
+        time: '19:30',
+        venue: 'Wankhede Stadium, Mumbai',
+        status: 'upcoming'
+      },
+      {
+        matchNo: 6,
+        team1: 'KKR',
+        team2: 'CSK',
+        date: '2025-04-06',
+        time: '19:30',
+        venue: 'Eden Gardens, Kolkata',
+        status: 'upcoming'
+      }
+    ];
+
+    const matchListEl = document.querySelector('.match-list');
+    const tabs = document.querySelectorAll('.tab-btn');
+
+    function renderMatches(filter = 'all') {
+      matchListEl.innerHTML = '';
+
+      let filtered = matches;
+      if (filter !== 'all') {
+        filtered = matches.filter(m => m.status === filter);
+      }
+
+      if (filtered.length === 0) {
+        matchListEl.innerHTML = `<p class="text-center text-gray-500">No matches found.</p>`;
+        return;
+      }
+
+      filtered.forEach(match => {
+        const team1 = teams[match.team1];
+        const team2 = teams[match.team2];
+
+        const matchEl = document.createElement('article');
+        matchEl.className = "bg-white rounded-lg shadow-md p-4 flex flex-col md:flex-row md:items-center md:justify-between";
+
+        matchEl.innerHTML = `
+          <div class="flex items-center space-x-4 mb-3 md:mb-0">
+            <div class="text-sm text-gray-500 font-semibold">Match ${match.matchNo}</div>
+            <div class="flex items-center space-x-2">
+              <img src="${team1.logo}" alt="${team1.name}" class="w-10 h-10 object-contain" />
+              <span class="font-semibold">${team1.name}</span>
+            </div>
+            <span class="text-red-600 font-bold text-xl">vs</span>
+            <div class="flex items-center space-x-2">
+              <img src="${team2.logo}" alt="${team2.name}" class="w-10 h-10 object-contain" />
+              <span class="font-semibold">${team2.name}</span>
+            </div>
+          </div>
+
+          <div class="text-gray-700 text-sm md:text-right space-y-1">
+            <div><strong>Date:</strong> ${new Date(match.date).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })}</div>
+            <div><strong>Time:</strong> ${match.time} IST</div>
+            <div><strong>Venue:</strong> ${match.venue}</div>
+            ${match.status === 'completed' ? `<div class="text-green-600 font-semibold mt-1">Result: ${match.result}</div>` : ''}
+          </div>
+        `;
+
+        matchListEl.appendChild(matchEl);
+      });
+    }
+
+    function filterMatches(filter) {
+      renderMatches(filter);
+      tabs.forEach(tab => {
+        tab.classList.remove('underline', 'decoration-white', 'decoration-2', 'font-semibold');
+      });
+      document.getElementById(`tab-${filter}`).classList.add('underline', 'decoration-white', 'decoration-2', 'font-semibold');
+    }
+
+    // Initial render
+    filterMatches('all');
+  </script>
 </body>
 </html>
